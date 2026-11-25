@@ -1,5 +1,7 @@
 # 履舟 lvzhou
 
+[![test](https://github.com/wushiyi105-jpg/lvzhou/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/lvzhou/actions)
+
 投岗位之前，把简历和 JD 放一起看一遍：**它要的，你有没有；有的那些，是写在经历里，还是只写在技能栏里。**
 
 我把它拆成两半：能算的本地算，不能算的才交给模型。
