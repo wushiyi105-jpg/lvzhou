@@ -133,6 +133,53 @@ Start the Web UI:
 python -m lvzhou serve     # http://127.0.0.1:8774
 ```
 
+Run in Docker (the container uses the default port 8774):
+
+```bash
+docker build -t lvzhou .
+docker run -p 8774:8774 lvzhou
+```
+
+## 🤔 Why not just ask a general LLM
+
+A general model reads your resume and a JD and says "you are a good fit". Lvzhou adds the three things it cannot:
+
+1. **Literal matching is computed locally** — when a JD says SQL, whether the word appears in the resume and in which section is checked line by line, producing a coverage score and the missing keywords. A model's "high fit" has to pass this layer first.
+2. **No new facts** — advice changes wording, not history: it will not invent an internship or a project, and every suggestion points back to an original sentence in the resume.
+3. **The resume stays local** — phone number, address and work history sit in local SQLite and are not uploaded; a model call sends only the current resume and JD.
+4. **Structured output** — coverage, missing items, section locations and rewording advice are fixed fields; a chat reply is encouragement you cannot edit a resume with.
+
+## 🎯 Use cases
+
+- **A pre-submission check**: put the JD and resume together, see which keywords live only in the skills list and not in experience, then decide whether a real project line is missing.
+- **Career switching**: from data analysis to product roles, see which JD requirements you can evidence and which you genuinely lack, without relying on a feeling.
+- **Helping a friend**: a JD and a resume in, ten minutes later a list of gaps and realistic fixes, rather than "good luck".
+
+## 🗺 Roadmap
+
+- **Multiple resume versions**: one history, several role-specific versions that can be compared.
+- **Batch JD comparison**: paste three JDs and see shared versus differing requirements to prioritise.
+- **Synonym expansion**: match "data analysis" in a JD with "data cleaning" in a resume to reduce false misses.
+- **Advice export**: write suggestions to Markdown and edit alongside, without switching windows.
+- **Interview hand-off**: pass the match result into likely interview questions, sharing one resume with the interview repo.
+
+## ❓ FAQ
+
+**Where do I get an API key?**
+`match` is local and needs no key; only `advice` calls a model. It defaults to Zhipu (`glm-4.6`), and DeepSeek works too — see `.env.example`.
+
+**Where is data stored, and is it uploaded?**
+Resumes and JDs live in local SQLite; a model call sends the current resume and matching JD, not your whole application history.
+
+**Does it work without a key?**
+Yes. `match` is a local comparison and still reports coverage and missing keywords; the model's rewording advice is what you miss.
+
+**How do I switch models?**
+Change `LLM_BASE_URL`, `LLM_MODEL` and `LLM_API_KEY`; local matching is unaffected.
+
+**Will it invent experience for me?**
+No. It changes wording, not facts, and any suggestion referencing experience absent from the resume is flagged rather than adopted.
+
 ## Commands
 
 | Command | What it does |
