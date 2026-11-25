@@ -11,7 +11,7 @@ Not computable is "meaning" — your research project actually did data analysis
 
 The line is drawn very hard, because I have seen too much: an AI helps someone edit a resume and, along the way, writes them an internship.
 
-![demo](assets/demo.gif)
+![usage](assets/demo.gif)
 
 ## Why "which section" matters
 
