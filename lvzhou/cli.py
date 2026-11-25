@@ -6,7 +6,7 @@ import argparse
 import json
 import os
 
-from . import match, resume, suggest, store
+from . import match, resume, store, suggest
 
 _OPENED: list = []
 

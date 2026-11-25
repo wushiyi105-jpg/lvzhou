@@ -12,9 +12,7 @@
 
 from __future__ import annotations
 
-import re
-
-from . import match, resume, skills, llm
+from . import llm, resume, skills
 
 SYSTEM = """你是简历编辑，不是职业顾问。
 

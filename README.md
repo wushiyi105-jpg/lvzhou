@@ -1,6 +1,6 @@
 # 履舟 lvzhou
 
-[![test](https://github.com/wushiyi105-jpg/lvzhou/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/lvzhou/actions) [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)]() [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![test](https://github.com/wushiyi105-jpg/lvzhou/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/lvzhou/actions) [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)]() [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE) [![codecov](https://codecov.io/gh/wushiyi105-jpg/lvzhou/branch/main/graph/badge.svg)](https://codecov.io/gh/wushiyi105-jpg/lvzhou)
 
 投岗位之前，把简历和 JD 放一起看一遍：**它要的，你有没有；有的那些，是写在经历里，还是只写在技能栏里。**
 
@@ -98,6 +98,22 @@
 但它认不出词表外的东西。简历里写 `Hadoop`，JD 里要 `Hadoop`，它两个都看不见。这是字面匹配的天花板。
 
 所以它不做最终判断：`match` 只告诉你字面对账的结果，`advice` 才让模型读语义。模型能看出「走访 2 家社区卫生服务中心，访谈 6 位经办人员」其实是用户研究，本地看不出来。
+
+## 数据流
+
+一条数据在这几个模块之间怎么走：
+
+```mermaid
+flowchart LR
+    A[简历] --> B[resume.py<br/>切段 · 认经历段与技能栏]
+    C[JD] --> D[skills.py<br/>词表匹配技能]
+    B --> E[match.py<br/>字面覆盖 + 证据强度打分]
+    D --> E
+    E --> F[suggest.py<br/>分数与证据喂模型]
+    F --> G[llm.py<br/>只改措辞]
+    G --> H{核验<br/>新增事实或数字一律不许}
+    H --> I[store.py → cli.py / web.py]
+```
 
 ## 快速开始
 

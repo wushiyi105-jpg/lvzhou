@@ -6,6 +6,8 @@
 
 from __future__ import annotations
 
+import re
+
 # 规范名 → 各种写法。匹配时把文本压平（小写、去空格标点）再找。
 SKILLS = {
     "python": ["python", "py3", "python3"],
@@ -38,9 +40,6 @@ REQUIRE_WORDS = ("熟悉", "掌握", "精通", "熟练", "了解", "具备", "�
 
 # 学历要求
 DEGREES = ("博士", "硕士", "研究生", "本科", "大专", "专科")
-
-
-import re
 
 _SHORT = re.compile(r"[a-z0-9+#]+")
 
