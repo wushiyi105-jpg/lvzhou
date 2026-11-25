@@ -1,6 +1,6 @@
 # 履舟 lvzhou
 
-[![test](https://github.com/wushiyi105-jpg/lvzhou/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/lvzhou/actions)
+[![test](https://github.com/wushiyi105-jpg/lvzhou/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/lvzhou/actions) [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)]() [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 投岗位之前，把简历和 JD 放一起看一遍：**它要的，你有没有；有的那些，是写在经历里，还是只写在技能栏里。**
 

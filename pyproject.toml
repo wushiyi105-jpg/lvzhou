@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lvzhou"
+version = "0.1.0"
+description = "简历与 JD 对账：字面证据本地算，改写不许凭空加事实"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+
+[project.scripts]
+lvzhou = "lvzhou.cli:main"
+
+[tool.setuptools]
+packages = ["lvzhou"]
