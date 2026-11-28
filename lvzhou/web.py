@@ -11,7 +11,7 @@ from . import match, resume, store, suggest
 PAGE = """<!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>履舟 · 简历对账</title>
+<title>履舟 · 我的证据够吗</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#0b0f14;color:#c9d1d9;font:15px/1.65 -apple-system,"Segoe UI","Microsoft YaHei",sans-serif}
@@ -35,8 +35,74 @@ button:disabled{opacity:.45}
 .card{border:1px solid #21262d;border-radius:8px;padding:12px;margin-bottom:10px}
 pre{background:#161b22;border-radius:8px;padding:10px;overflow:auto;font-size:12.5px;margin:6px 0}
 .tag{font-size:12px;border-radius:9px;padding:1px 7px;background:#1c2f3d;color:#79c0ff}
+
+:root{--maxw:1080px;--bg:#ecebe5;--card:#fffef9;--ink:#202a36;--text:#202a36;--dim:#68717b;--line:#d2d2c8;--accent:#294a6b;--muted:#68717b}
+.wrap{max-width:1080px}
+body{background:#ecebe5;color:#202a36;font-family:"PingFang SC","Microsoft YaHei",sans-serif}
+h1{color:#202a36}
+header{max-width:1080px;margin:0 auto}
+input,textarea,select{background:#fff;color:#202a36;border-color:#d2d2c8;border-radius:2px}
+button:not(.ghost):not(.tab){background:#294a6b;color:#fff;border-radius:2px}
+button.ghost{background:transparent!important;color:#294a6b!important;border:1px solid #d2d2c8!important}
+h2,h3{color:#294a6b}
+pre{background:#fafaf6;color:#202a36;border-color:#d2d2c8}
+.item,.card{border-color:#d2d2c8;background:#fffef9}
+.k,.empty,.hint{color:#68717b}
+
+h1{font-size:clamp(31px,5vw,39px);line-height:1.26}
+.prod{display:block;font-size:11px;line-height:1.4;letter-spacing:.18em;font-weight:650;margin-bottom:8px;opacity:.72}
+.lede,.sub{max-width:62ch;line-height:1.75}
+.route{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin:16px auto 20px;border:1px solid var(--line);background:var(--line);max-width:var(--maxw)}
+.route span{padding:11px 13px;background:var(--card);font-size:12px;line-height:1.5}
+.route b{display:block;font-size:10px;letter-spacing:.1em;margin-bottom:3px;opacity:.66}
+button{min-height:46px}
+input,select{min-height:44px}
+pre{white-space:pre-wrap}
+@media(max-width:680px){
+  .wrap{padding:20px 16px 56px}
+  .route{grid-template-columns:1fr}
+  h1{font-size:30px!important}
+  .row>div{min-width:100%!important}
+  button{width:100%}
+}
+
+body{background:#ecebe5;color:#202a36}
+header{display:block!important;max-width:1080px;margin:0 auto;padding:24px 20px 0;background:transparent;border:0}
+header h1{color:#202a36;font-size:38px;line-height:1.24;letter-spacing:-.02em}
+header .sub{display:block;color:#68717b;font-size:14px;margin-top:6px}
+main{max-width:1080px;margin:0 auto;background:#fffef9;border-left:1px solid #d2d2c8;border-right:1px solid #d2d2c8;grid-template-columns:330px 1fr;min-height:calc(100vh - 150px)}
+aside{background:#f5f3ea;border-right:1px solid #d2d2c8}
+section{background:#fffef9}
+input,textarea,select{background:#fff;color:#202a36;border-color:#d0cec2;border-radius:2px}
+input:focus,textarea:focus,select:focus{border-color:#294a6b;box-shadow:0 0 0 2px #d9e0e7}
+button{background:#294a6b;color:#fff;border-radius:2px}
+button:hover{background:#203c56}
+h2{color:#294a6b;font-size:14px;letter-spacing:.06em}
+.k,.empty{color:#68717b}
+.item{border-color:#d2d2c8;background:#fff}
+
+
+/* mobile-32 */
+input[type=text],input[type=number],input[type=email]{background:#fff;color:#202a36;border-color:#d2d2c8}
+
+@media(max-width:760px){
+  main{grid-template-columns:1fr!important}
+  aside{border-right:0!important;border-bottom:1px solid #d2d2c8;width:auto!important}
+  section{padding:16px!important}
+  .row{flex-wrap:wrap!important}
+  .row>div{min-width:100%!important}
+  h1{font-size:30px!important}
+  .route{grid-template-columns:1fr!important}
+  button{min-height:48px}
+  pre{overflow-x:auto}
+}
+
+/* mobile-height */
+@media(max-width:760px){main{min-height:auto!important}aside{min-height:0!important}}
 </style></head><body>
-<header><h1>履舟</h1><span class="sub">简历和 JD 对账——本地看字面，模型只会改措辞，不许加事实</span></header>
+<header><h1><span class="prod">履舟</span>这个岗位，我的证据够吗</h1><p class="lede">给正在投递某个岗位的人：把 JD 要求逐条拉出来，和简历里的经历一一对上；缺证据就留待补，改写只来自已有事实。</p></header>
+  <div class="route" aria-label="任务步骤"><span><b>01</b>贴 JD 和简历</span><span><b>02</b>逐条对证据</span><span><b>03</b>导出岗位版</span></div>
+
 <main>
 <aside>
   <h2>简历</h2>
